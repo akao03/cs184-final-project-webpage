@@ -40,31 +40,47 @@
 
         <h2>Problem Description</h2>
 
-		One of our members, Circle Chen, has built this amazing game called Spermulator from the Spring 2022 Game Design and Development DeCal. The game can be found at this link: <a href="https://circlecly.itch.io/spermulator.">https://circlecly.itch.io/spermulator</a>. This game is a simulation of the journey of a sperm. The player controls a sperm cell and must navigate through various obstacles to reach the egg. The game is designed to be both educational and entertaining, providing players with information about human reproduction while also challenging them to complete the game. <br/>
+		One of our members, Circle Chen, has built this amazing game called Spermulator from the Spring 2022 Game Design and Development DeCal. The game can be found at this link: <a href="https://circlecly.itch.io/spermulator.">https://circlecly.itch.io/spermulator</a>. <br> <br>
+		
+		This game is a simulation of the journey of a sperm. The player controls a sperm cell and must navigate through various obstacles to reach the egg. Primary obstacles involving bacteria and cells that produce acid and base, which requires carefully managing the pH of the sperm. Furthermore, the sperm has limited energy budget, so movement has to be carefully planned. The game also includes a functional multiplayer component, where players race against each other to find the egg. <br> <br>
+
+		<figure>
+            <img src="./gameplay.png" alt="Screenshot of the original 2D Spermulator game" style="max-width: 80%;">
+        </figure>
+		
+		The game is designed to be both educational and entertaining, providing players with information about human reproduction while also challenging them to complete the game. <br> <br>
 
 		While engaging, the game is in 2D, and we would like to remake everything in 3D. This would require applying knowledge on 3D modeling, animation, and potentially shaders.
 
         <h2>Goals and Deliverables</h2>
 
-		What we plan to deliver is a 3D remake of the Spermulator game hosted on itch.io, where viewers could play this game. The game should run at 60 FPS consistently on a modern laptop. All original game functions should be working.
+		What we plan to deliver is a 3D remake of the Spermulator game hosted on itch.io, where viewers could play this game. The game should run at 60 FPS consistently on a modern laptop. All original game functions should be working. This would include: <br>
+		<li>Player controls</li>
+		<li>Game mechanics (pH, energy budget, collision detection)</li>
+		<li>NPC AI (bacteria, cells, competitor sperms)</li>
+		<li>Win/Loss conditions (reaching the egg, other sperms reaching the egg first)</li>
+		<li>Multiplayer</li>
+		<li>Tutorial level</li>
+		<br>
 
-		If things go well, we will include shaders to enhance the visual experience of the game.
+		The major logic of the game is already implemented in the original game, so what we build on top is introducing 3D modeling, rendering (for example, player vision, and potentially shaders), and animation to the game, to create an even more immersive experience. <br> <br>
 
-		In this section you should organize and plan the tasks and subtasks that your team will execute. Since presentations are ~4 weeks from the due-date of the proposal, you should include a set of tasks for every week.
+		If there is time after the base game runs in 3D, we will attempt to add shaders to enhance the visual experience of the game.
 
         <h2>Schedule</h2>
 
-		Recreate Assets in 3D (sperm, cells, map)
+		<li>Week 1: All team members familiarize codebase, pick up Unity. Start recreating assets in 3D, using modeling and UV Mapping (sperm, cells, map)</li>
+		
+		<li>Week 2: Reprogram tutorial level, controls, game mechanics in 3D</li>
 
-		Reprogram controls and game mechanics in 3D
+		<li>Week 3: Reprogram AI, make sure multiplayer is still functional. Integration testing on the base game</li>
 
-		Shaders if time
-
-		Integration Testing
+		<li>Week 4: If time, shaders</li>
 
         <h2>Resources</h2>
-		Unity Tutorials
-		Shaders, how to use them in Unity.
+		Unity Tutorials <br> <br>
+		Unity Support for Shaders <br> <br>
+		Photon PUN2 for multiplayer (this was used in the original game) <br> <br>
 
 	</body>
 </html>
