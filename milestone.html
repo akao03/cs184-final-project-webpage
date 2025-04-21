@@ -34,19 +34,57 @@
         Link to webpage: <a href="https://akao03.github.io/cs184-final-project-webpage/">https://akao03.github.io/cs184-final-project-webpage/</a>
         <br>
         
-        <h2>Accomplishments</h2>
-        We were able to create a 3D camera for the game, perform 3D movement, and add movement to the sperm's tail.
-		
+        <p>We have made significant progress towards our goal as of April 20th, 2025. First, we were able to obtain a 3D sperm model 
+        and animate it using sine displacement to produce a "swimming" motion. At the same time, we were able to convert the 
+        camera view to 3D to simulate 3D movement and add glows to our 3D objects using Bloom filters. We are currently polishing 
+        our acidic patches (spheres in the backend) so they can both glow and be transparent. </p>
 
-        <h2>Preliminary Results</h2>
-		
+        <figure>
+			<img src="images/milestone/glow-wip.png" alt="Preliminary 3D object glow" style="width:70%"/>
+			<figcaption>Glowing 3D sperm and spheres. Notice the opaque cube vs the transparent spheres.</figcaption>
+		</figure>
 
-        <h2>Progress Reflection</h2>
+        <p>The 3D model of the uterus is mostly formed and we are continually revising it before we import it to our game. We 
+        have created textures for the uterus and egg. Next steps include creating models and textures for bacteria and
+        finalizing those of the egg alongside updating game functionality for 3D. </p>
+        
+        <p>This short video showcases the new 3D camera view and sperm movement.</p>
+        <video width="640" height="480" autoplay>
+            <source src="3dmovement.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
 
+        <p>Here we have our 3D uterus model.</p>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/milestone/uterus-wip.png" width="400px"/>
+				  <figcaption>The full uterus model.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/milestone/uterus-wip-1.png" width="400px"/>
+				  <figcaption>Closeup of a part of the model.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
-        <h2>Updated Work Plan</h2>
-
-		
+        <p>These are some textures we will be using in our project.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/milestone/egg-texture.png" width="400px"/>
+				  <figcaption>Texture for the egg.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/milestone/uterus-texture-wip.png" width="400px"/>
+				  <figcaption>Textured uterine wall. This scene will be updated with 3D assets.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
 	</body>
 </html>
