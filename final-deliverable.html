@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+		<style>
+			h1 {
+				text-align: center;
+			}
+
+			.container {
+				margin: 0 auto;
+				padding: 60px 20%;
+			}
+
+			figure {
+				text-align: center;
+			}
+
+			img {
+				display: inline-block;
+			}
+
+			body {
+				font-family: 'Inter', sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		<h1>Spermulator 3D-Remake Final Report</h1>
+		<div style="text-align: center;">Names: Sanika Bharvirkar, Circle Chen, Ashley Kao, Grant Zhao</div>
+
+        <br>
+        Team 7
+        <br>
+        Link to webpage: <a href="https://akao03.github.io/cs184-final-project-webpage/final-deliverable.html">https://akao03.github.io/cs184-final-project-webpage/final-deliverable.html</a>
+        <br>
+        Link to video: <a href="https://drive.google.com/file/d/1gQRHGR9s3rZEzQQpZ5JK1dIQTpprAwWe/view?usp=sharing">https://drive.google.com/file/d/1gQRHGR9s3rZEzQQpZ5JK1dIQTpprAwWe/view?usp=sharing</a>
+        <br>
+		Link to slides:<a href="https://docs.google.com/presentation/d/1-O_gsE9-Gc6-yXC7CnoSOrlRxWPDf9CEVOGWhy-gdyA/edit?slide=id.p#slide=id.p">https://docs.google.com/presentation/d/1-O_gsE9-Gc6-yXC7CnoSOrlRxWPDf9CEVOGWhy-gdyA/edit?slide=id.p#slide=id.p</a>
+		<br>
+        
+		<!--Should be 2-3 pages long when printed-->
+
+		<h2>Abstract</h2>
+		<!--A paragraph summary of the entire project-->
+		In this project, we turned Spermulator, a 2D game, into 3D.
+
+		<h2>Technical Approach</h2>
+		<!--A 1-2 page summary of your technical approach, techniques used, algorithms implemented, etc. 
+		(use references to papers or other resources for further detail). Highlight how your approach varied from the 
+		references used (did you implement a subset, or did you change or enhance anything), the unique decisions you 
+		made and why.-->
+		<p>The conversion from 2D to 3D required the creation of new objects for each of the existing 2D assets, including 
+			the player sperm, bacteria cells, immune cells, and the uterus itself. 
+		</p>
+		<p>We primarily experimented with Unity parameters and set up test scenes for visualizing new assets.</p>
+
+		<!--A description of problems encountered and how you tackled them.-->
+		<p>We encountered a variety of bugs while working on the project. Initially when doing sine-based displacement on the sperm model,
+		the sperm's head would also swing. We fixed this by changing the shader graph to produce spiral-like movement rather than 
+		purely side by side. This had the benefit of making a more realistic movement while also keeping the sperm's head relatively stable.
+		We also encountered issues with transparency of the acid, namely the spheres representing acid would show up as opaque despite having 
+		a color alpha value of zero (i.e. transparent) or it would be semi-transparent but colors of the overlapping shapes would not appear.
+		We addressed this by changing the shader used for the acid's material from a shader graph to an unlit transparent shader.</p>
+		<p>Another bug that came up was the player model not spawning after the conclusion of the tutorial level.</p>
+		<p>Proper movement and interaction with walls proved to be a challenge.</p>
+
+		<!--A description of lessons learned.-->
+
+		<h2>Results</h2>
+		<!--Your final images, animations, video of your system (whichever is relevant). 
+		You can include results that you think show off what you built but that you did not have time to go over on presentation day.-->
+
+		<!--Include side-by-side comparisons of 2D vs new 3D stuff e.g. player, bacteria cells, egg-->
+
+		<h2>References</h2>
+		<ul>
+			<li>Unity Documentation (URP, setting up shader graphs, Modifying Material Colors)</li>
+			<li><a href="https://www.youtube.com/watch?v=KLuyf9gqCik">URP HDR Glow - Unity Shader Graph (MichaelsGameLab, YouTube)</a></li>
+			<li><a href="https://www.youtube.com/watch?v=KlWPedIvwuw">Make Object Transparent in Unity 2022 (Dev Dunk, YouTube)</li>
+		</ul>
+
+		<h2>Contributions</h2>
+		<!--A clear description of the work contributed by each team member.-->
+	</body>
+</html>
