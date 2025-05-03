@@ -44,7 +44,8 @@
 
 		<h2>Abstract</h2>
 		<!--A paragraph summary of the entire project-->
-		In this project, we turned Spermulator, a 2D game, into 3D.
+		In this project, we turned Spermulator, a 2D game, into 3D. This involved turning all assets into 3D,
+		adapting camera views, and developing new textures that would accurately represent light reflection.
 
 		<h2>Technical Approach</h2>
 		<!--A 1-2 page summary of your technical approach, techniques used, algorithms implemented, etc. 
@@ -52,9 +53,14 @@
 		references used (did you implement a subset, or did you change or enhance anything), the unique decisions you 
 		made and why.-->
 		<p>The conversion from 2D to 3D required the creation of new objects for each of the existing 2D assets, including 
-			the player sperm, bacteria cells, immune cells, and the uterus itself. 
+			the player sperm, bacteria cells, immune cells, and the uterus itself. We used a precreated 3D model for the sperm.
+			The uterus and bacteria cells were custom-created in Blender, with utilization of subdivision in mesh creation.
 		</p>
-		<p>We primarily experimented with Unity parameters and set up test scenes for visualizing new assets.</p>
+		<p>We primarily experimented with Unity parameters and set up test scenes for visualizing new assets. For example,
+			when we were testing 3D movement, we created a cube-shaped test scene to check the angle of the camera. For 
+			transparency tests, we placed multiple transparent objects in front of each other such that they overlapped partially.
+			This allowed us to check whether we could see objects that were placed further in the back through the objects in the front.
+		</p>
 
 		<!--A description of problems encountered and how you tackled them.-->
 		<p>We encountered a variety of bugs while working on the project. Initially when doing sine-based displacement on the sperm model,
@@ -64,7 +70,15 @@
 		a color alpha value of zero (i.e. transparent) or it would be semi-transparent but colors of the overlapping shapes would not appear.
 		We addressed this by changing the shader used for the acid's material from a shader graph to an unlit transparent shader.</p>
 		<p>Another bug that came up was the player model not spawning after the conclusion of the tutorial level.</p>
-		<p>Proper movement and interaction with walls proved to be a challenge.</p>
+		<p>Proper movement and interaction with walls proved to be a challenge. There were bugs in the uterus mesh that resulted 
+			in one side of the wall becoming transparent, thus allowing the player model to escape outside the map. 
+		</p>
+		<p>Yet another bug we encountered was issues with sperm model coloration, including selected color not persisting
+			after the selection page and the new sperm model coloration not matching the color palette options. The nonpersistence
+			issue was resolved by adding additional handler code to the color handler in our script. The color palette mismatch
+			was due to our shader graph blending together the texture color and an input color to produce the final output, which 
+			caused the sperm to become blue-tinged. This was fixed by changing the texture to one that was white-based. 
+		</p>
 
 		<!--A description of lessons learned.-->
 
@@ -90,6 +104,8 @@
 		<p>Circle did the bulk of the Unity work, including sperm movement, transformation of the camera view to 3D,
 			adapting existing scripts for 3D, and much more.
 		</p>
-		<p>Grant created the 3D model for the uterus in Blender.</p>
+		<p>Grant created the 3D model for the uterus in Blender. This model features ridges in appropriate parts of the model 
+			and is proportioned to be close to the real organ.
+		</p>
 	</body>
 </html>
