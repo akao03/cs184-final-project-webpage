@@ -48,39 +48,104 @@
 		adapting camera views, and developing new textures that would accurately represent light reflection.
 
 		<h2>Technical Approach</h2>
-		<!--A 1-2 page summary of your technical approach, techniques used, algorithms implemented, etc. 
-		(use references to papers or other resources for further detail). Highlight how your approach varied from the 
-		references used (did you implement a subset, or did you change or enhance anything), the unique decisions you 
-		made and why.-->
-		<p>The conversion from 2D to 3D required the creation of new objects for each of the existing 2D assets, including 
-			the player sperm, bacteria cells, immune cells, and the uterus itself. We used a precreated 3D model for the sperm.
-			The uterus and bacteria cells were custom-created in Blender, with utilization of subdivision in mesh creation.
-		</p>
-		<p>We primarily experimented with Unity parameters and set up test scenes for visualizing new assets. For example,
-			when we were testing 3D movement, we created a cube-shaped test scene to check the angle of the camera. For 
-			transparency tests, we placed multiple transparent objects in front of each other such that they overlapped partially.
-			This allowed us to check whether we could see objects that were placed further in the back through the objects in the front.
-		</p>
 
-		<!--A description of problems encountered and how you tackled them.-->
-		<p>We encountered a variety of bugs while working on the project. Initially when doing sine-based displacement on the sperm model,
-		the sperm's head would also swing. We fixed this by changing the shader graph to produce spiral-like movement rather than 
-		purely side by side. This had the benefit of making a more realistic movement while also keeping the sperm's head relatively stable.
-		We also encountered issues with transparency of the acid, namely the spheres representing acid would show up as opaque despite having 
-		a color alpha value of zero (i.e. transparent) or it would be semi-transparent but colors of the overlapping shapes would not appear.
-		We addressed this by changing the shader used for the acid's material from a shader graph to an unlit transparent shader.</p>
-		<p>Another bug that came up was the player model not spawning after the conclusion of the tutorial level.</p>
-		<p>Proper movement and interaction with walls proved to be a challenge. There were bugs in the uterus mesh that resulted 
-			in one side of the wall becoming transparent, thus allowing the player model to escape outside the map. 
-		</p>
-		<p>Yet another bug we encountered was issues with sperm model coloration, including selected color not persisting
-			after the selection page and the new sperm model coloration not matching the color palette options. The nonpersistence
-			issue was resolved by adding additional handler code to the color handler in our script. The color palette mismatch
-			was due to our shader graph blending together the texture color and an input color to produce the final output, which 
-			caused the sperm to become blue-tinged. This was fixed by changing the texture to one that was white-based. 
-		</p>
+			<h3>3D Asset Creation</h3>
+			<p>
+			To convert the original 2D Spermulator game into a 3D experience, we recreated all major assets in 3D, including the player sperm, bacteria cells, immune cells, and the uterus environment. We used a preexisting 3D sperm model and custom-modeled the uterus and bacteria in Blender, leveraging subdivision surface modeling for smoother organic geometry. Asset import and scaling were carefully adjusted to ensure consistency across the scene.
+			</p>
 
-		<!--A description of lessons learned.-->
+			<h3>3D Freelook Movement and Camera System</h3>
+			<p>
+			Our control system was designed around four goals:<br>
+			(1) Allow the player to look freely using the mouse,<br>
+			(2) Move the player using WASD, relative to the camera,<br>
+			(3) Rotate the sperm model to face its movement direction,<br>
+			(4) Have the camera follow the player without feedback jitter.
+			</p>
+
+			<p>
+			To implement (1), we track pitch and yaw manually and directly rotate the player object based on mouse input. For (2), keyboard input is transformed from camera space to world space using the player’s rotation.
+			</p>
+
+			<p>
+			For (3), the sperm model (a child of the player GameObject) is rotated to face the movement direction without interfering with physics. We apply a fixed correction to account for the model’s default forward direction, then use <code>Quaternion.Slerp</code> for smooth interpolation.
+			</p>
+
+			<p>
+			For (4), we use Cinemachine’s <code>ThirdPersonFollow</code> to follow the player’s position. However, we disable Cinemachine’s <code>PanTilt</code> rotation module to avoid circular dependencies—<code>PanTilt</code> rotates the camera based on input, which would then affect player rotation and feed back into camera movement. By separating input-driven rotation (handled by the player) from camera follow behavior, we achieved stable and consistent controls.
+			</p>
+
+			<h3>Procedural Sperm Wiggle Shader</h3>
+			<p>
+			To simulate realistic swimming, we implemented a procedural GPU animation using Unity’s Shader Graph (URP). Rather than rigging a skeletal tail, we applied sinusoidal vertex displacement along the mesh.
+			</p>
+
+			<p>
+			The sperm model uses a custom coordinate system: local X = forward, Y = left, Z = down. In the shader, vertex Y and Z positions are displaced using sine and cosine functions of the form:
+			</p>
+
+			<pre><code>
+			Y += sin(X * frequency + time * speed) * amplitude  
+			Z += cos(X * frequency + time * speed) * amplitude
+			</code></pre>
+
+			<p>
+			This results in a helical tail motion, mimicking 3D swimming behavior. To keep the head stable while animating the tail, we attenuate the amplitude linearly based on X position:
+			</p>
+
+			<pre><code>
+			attenuation = 1 - saturate(X / maxX)
+			</code></pre>
+
+			<p>
+			All displacement occurs in object space to ensure consistent behavior regardless of prefab scale. Our sperm prefab used a non-uniform scale (0.4, 0.4, 1), which required careful handling to avoid distortion.
+			</p>
+
+			<h3>Sperm Glow Shader</h3>
+			<p>TBD. @Ashley</p>
+
+			<h3>Blinn-Phong Shading for the Game Map</h3>
+			<p>TBD. I think @Sanika for this part?</p>
+
+			<h3>Geometric Modeling</h3>
+			<p>TBD. @Grant.</p>
+
+			<h2>Problems Encountered and Solutions</h2>
+
+			<ul>
+			<li>
+				<strong>Transparency Artifacts:</strong> Acid spheres appeared opaque despite having alpha = 0, or failed to render objects behind them. <br>
+				→ Fixed by replacing the Shader Graph material with a standard Unlit Transparent shader, avoiding issues with URP depth sorting.
+			</li>
+			<li>
+				<strong>Player Not Spawning Post-Tutorial:</strong> The player model failed to appear after the tutorial scene. <br>
+				→ Resolved by verifying scene transitions and player instantiation code.
+			</li>
+			<li>
+				<strong>Uterus Wall Mesh Bugs:</strong> Certain areas of the uterus had flipped normals or missing backfaces, allowing the player to escape the map. <br>
+				→ Addressed in Blender by fixing normals and ensuring the material supports two-sided rendering if necessary. Also removed absurdly far away vertices from the main model to ensure correct mesh collider calculation.
+			</li>
+			<li>
+				<strong>Sperm Color Mismatch:</strong> Selected sperm colors didn’t persist between scenes and appeared blue-tinged. <br>
+				→ Persistence was fixed by extending the color handler script. The blue tint was due to color blending in the shader; switching to a white-base texture fixed the final output.
+			</li>
+			<li>
+				<strong>Camera Instability:</strong> Initial use of Cinemachine's <code>PanTilt</code> module led to jittery, recursive control issues. <br>
+				→ Solved by shifting all input-driven rotation logic to the player and using the camera purely for passive following.
+			</li>
+			</ul>
+
+			<h2>Lessons Learned</h2>
+
+			<ul>
+			<li><strong>Shader Design Requires Precision:</strong> Understanding object vs world space and non-uniform scaling was crucial for reliable procedural animation.</li>
+			<li><strong>Camera Logic Must Be Decoupled:</strong> Avoiding feedback loops in Cinemachine systems helped create a more polished feel.</li>
+			<li><strong>Model Orientation Matters:</strong> Misaligned import orientations necessitate correction both in logic and shaders; knowing your coordinate system is vital.</li>
+			<li><strong>Testing in Isolation Pays Off:</strong> Simple test scenes—such as a box room for camera testing or stacked transparent spheres—helped isolate and resolve visual issues.</li>
+			<li><strong>Visual Debugging Tools Are Invaluable:</strong> Shader Graph previews, gizmos, and inspector probes were instrumental in debugging visual artifacts.</li>
+			<li><strong>Cross-Disciplinary Collaboration:</strong> Effective teamwork across modeling, scripting, and shading improved productivity and final polish.</li>
+			</ul>
+
 
 		<h2>Results</h2>
 		<!--Your final images, animations, video of your system (whichever is relevant). 
