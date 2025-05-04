@@ -53,10 +53,19 @@
 		bacteria mesh in Blender and imported them into Unity, where we brought all the parts together. The result is <a href="https://circlecly.itch.io/spermulator-3d-remake">Spermulator: 3D</a>! 
 		</p>
 
-		<figure>
-			<img src="gamestartingpoint.png" alt="2D Spermulator" style="width:70%"/>
-			<figcaption>Spermulator 2D was our starting point.</figcaption>
-		</figure>
+		<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			<tr>
+			  <td style="text-align: center;">
+				<img src="gamestartingpoint.png" alt="2D Spermulator" style="width:70%"/>
+				<figcaption>Spermulator 2D was our starting point.</figcaption>
+			  </td>
+			  <td style="text-align: center;">
+				<img src="gameplay (1).gif" alt="3D Spermulator" style="width:70%"/>
+				<figcaption>Example of what Spermulator 3D looks like now.</figcaption>
+			  </td>
+			</tr>
+		</table>
+
 
 		<h2>Technical Approach</h2>
 
@@ -144,7 +153,9 @@
 
 			<p>And then lerp them over the current screen color to get the emission:</p>
 			<p>Emission = Lerp(S(u), U1 + U2, 0.5) </p>
-			<p>Where S(u) is the screen color pixel. This gives us the final shader! We use a base color, and then emit over it to create the effect.  </p>		
+			<p>Where S(u) is the screen color pixel. This gives us the final shader! We use a base color, and then emit over it to create the effect.  This implementation differed
+				from the tutorial because we only really needed the emission effect. Additional, for this shader we chose have an input color so that it was user adjustable.
+			</p>		
 			
 			<figure>
 				<img src="eggshader.png" alt="3D Egg Shader" style="width:70%"/>
@@ -168,6 +179,12 @@
 				<img src="postdisplace.png" alt="3D Map" style="width:70%"/>
 				<figcaption>Map after shader displacement</figcaption>
 			</figure>
+
+			<p>We differed from the regular vertex displacement tutorials by displacing by a sample from an height map. This was tricky because Unity expects vertex position in Object space, and 
+				the height map is in World space. We had to convert the height map position to Object space before sampling it, and then convert the sampled value back to World space before adding it to the vertex position. We also differed 
+				from the reference by using an ambient occlusion map to make grooves seem deeper without having to edit our height map, as a common issue we ran into was that 
+				the values from our sampled height map were too low. This meant that to make the bumps seem more apparent, we would accidently make objects much to big, so the ambient occlusion map helped solve that. </p>
+			</p>
 
 			<p>Finally, we need some way for the uterus walls to have that same see-through effect real flesh does, such as when you hold a flashlight against your hand. This wasn’t fully possible in URP (only supported by HDRP), but we simulated it using emissions. Unity doesn’t ship with a function to calculate attenuation and direction from lights other than the main one, so we followed a tutorial and customized the script for our needs. The material emission is such: </p>
 
@@ -350,6 +367,9 @@
 			<li>Unity Documentation (URP, setting up shader graphs, Modifying Material Colors)</li>
 			<li><a href="https://www.youtube.com/watch?v=KLuyf9gqCik">URP HDR Glow - Unity Shader Graph (MichaelsGameLab, YouTube)</a></li>
 			<li><a href="https://www.youtube.com/watch?v=KlWPedIvwuw">Make Object Transparent in Unity 2022 (Dev Dunk, YouTube)</a></li>
+			<li><a href="https://www.youtube.com/watch?v=ipge1K51JJs">Fast Subsurface scattering shader in Unity URP for mobile</a></li>
+			<li><a href="https://www.youtube.com/watch?v=DpXPhGeCqus">Magical Plasma Orb Part 1 Tutorial</a></li>
+			<li><a href="https://www.texturecan.com/details/137/">Texture Pack for Flesh</a></li>
 		</ul>
 
 		<h2>Contributions</h2>
