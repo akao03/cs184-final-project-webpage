@@ -47,8 +47,18 @@
 
 		<h2>Abstract</h2>
 		<!--A paragraph summary of the entire project-->
-		In this project, we turned Spermulator, a 2D game, into 3D. This involved turning all assets into 3D,
-		adapting camera views, and developing new textures that would accurately represent light reflection.
+		<p> this project, we turned Spermulator, a 2D game, into 3D. This involved turning all assets into 3D,
+		adapting camera views, and developing new textures that would accurately represent light reflection. Our starting point was a 
+		2D rendering pipeline in Unity with basic game function code, minimal if not no shading. Only one of us had Unity experience at all, and only with a 2D pipeline. Over the course of the project, we learnt 
+		alot about Unity's 3D rendering pipeline, including converting all the assets and camera system to 3D. Every shader we made was from 
+		scratch in Unity's shader graph or custom .shader files, with the aid of online youtube tutorials. We custom made our uterus model mesh and 
+		bacteria mesh in Blender, and then imported them into Unity, where we brought all the parts toghether. The result is Spermulator: 3D! 
+		</p>
+
+		<figure>
+			<img src="gamestartingpoint.png" alt="2D Spermulator" style="width:70%"/>
+			<figcaption>Spermulator 2D was our starting point.</figcaption>
+		</figure>
 
 		<h2>Technical Approach</h2>
 
@@ -125,7 +135,7 @@
 			</p>
 
 			<h3>Custom Shading for the Game Map, Egg, Bacteria</h3>
-			<p>The shading for the egg uses translucency and emissions to simulate the egg’s semi-transparent appearance. The shader uses a lerp and scrolling speed to make the emission seem translucent as well. </p>
+			<p>The shading for the bacteria mucus uses translucency and emissions to simulate the mucus’s semi-transparent appearance. The shader uses a lerp and scrolling speed to make the emission seem translucent as well. </p>
 
 			<p> We compute two scrolling offsets: o1(t) = (t * scrolling_speed), o2(t) = 1 - o1(t)
 				Them we build two tiled offset UV’s from a texture of an electrical current to get two currents rolling against each other: 
@@ -140,7 +150,7 @@
 			
 			<figure>
 				<img src="eggshader.png" alt="3D Egg Shader" style="width:70%"/>
-				<figcaption>Glowing 3D Egg with translucency effects.</figcaption>
+				<figcaption>Glowing 3D Shader with translucency effects.</figcaption>
 			</figure>
 
 			<p>The Game Map uses a combination of displacement mapping and simulated sub surface shading to mimic real flesh.</p>
@@ -166,6 +176,19 @@
 			<p>Emission = intensity * shineThroughColor * pointlight_attenuation(world_position)</p>
 
 			<p>We additionally clamped the emission values to ensure the transition between base and emission color are not too harsh.  </p>
+
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+				  <td style="text-align: center;">
+					<img src="nosubsurface.png" width="400px"/>
+					<figcaption>Uterus Wall without subsurface scattering</figcaption>
+				  </td>
+				  <td style="text-align: center;">
+					<img src="subsurface.png" width="400px"/>
+					<figcaption>Uterus Wall with simulated subsurface scattering</figcaption>
+				  </td>
+				</tr>
+			</table>
 
 			<h3>Geometric Modeling</h3>
 			<p>TBD. @Grant.</p>
