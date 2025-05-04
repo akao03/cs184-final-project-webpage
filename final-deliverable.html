@@ -189,8 +189,39 @@
 			</table>
 
 			<h3>Geometric Modeling</h3>
-			<p>TBD. @Grant.</p>
-
+			<p>To construct the map environment of the 3D Spermulator game, we used Blender to model organic structures such as the vagina and uterus.
+				The modeling process began with basic primitive meshes including cylinders, spheres, and cones which served as foundational shapes for the overall structure.
+			   We reshaped these primitives using Bezier curves to guide the organic flow of the forms, especially for the connection between the uterus and the ovaries.
+				This allowed us to define smooth, natural contours with fine control over curvature to allow for a circular bend.
+			   To further refine and deform the geometry, we employed lattice modifiers, which enabled the smooth manipulation of grouped vertices without distorting the overall mesh structure. This was particularly useful for creating the subtle
+				ridges and inner folds characteristic of the vaginal lining as seen in the pictures of the game.
+			   A key technique used to enhance control over the model's shape was the application of Catmull-Clark subdivision surfaces. 
+			   This subdivision method increased the number of faces and edges across the mesh, allowing for greater detail and smoother curvature during sculpting
+				such as for the vaginal canal ridges and bumps. It also gave us finer control over subtle deformations that allow us to transfer over for real-time rendering in Unity.
+			   
+			   Throughout the modeling process, we maintained a focus on structural integrity and scaling. We ensured proper mesh orientation, removed stray or excessive vertices, and corrected flipped normals to prevent lighting and collision issues in Unity.</p>
+			   <table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+				  <td style="text-align: center;">
+					<img src="map model.png" width="400px"/>
+					<figcaption>The model of the game in blender</figcaption>
+				  </td>
+				  <td style="text-align: center;">
+					<img src="canal model.png" width="400px"/>
+					<figcaption>The ridges and bends inside the vaginal canal cylinder model in blender</figcaption>
+				  </td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+					  <img src="curvature.png" width="400px"/>
+					  <figcaption>the curvature using bezier's curve connecting the uterus and ovaries in blender</figcaption>
+					</td>
+					<td style="text-align: center;">
+					  <img src="barriers.png" width="400px"/>
+					  <figcaption>the barriers inside the ovary in blender but not used in final game</figcaption>
+					</td>
+				  </tr>
+			</table>
 			<h2>Problems Encountered and Solutions</h2>
 
 			<ul>
