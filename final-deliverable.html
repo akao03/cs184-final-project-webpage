@@ -119,7 +119,7 @@
 			</p>
 
 			<h3>Custom Shading for the Game Map, Egg, Bacteria</h3>
-			<p>The shading for the egg uses translucency and emissions to simulate the egg’s semi-transparent appearance. The shader uses a lerp and scrolling speed to make the emission seem translucent as well. </p>
+			<p>The shading for the bacteria mucus uses translucency and emissions to simulate the mucus’s semi-transparent appearance. The shader uses a lerp and scrolling speed to make the emission seem translucent as well. </p>
 
 			<p> We compute two scrolling offsets: o1(t) = (t * scrolling_speed), o2(t) = 1 - o1(t)
 				Them we build two tiled offset UV’s from a texture of an electrical current to get two currents rolling against each other: 
@@ -134,7 +134,7 @@
 			
 			<figure>
 				<img src="eggshader.png" alt="3D Egg Shader" style="width:70%"/>
-				<figcaption>Glowing 3D Egg with translucency effects.</figcaption>
+				<figcaption>Glowing 3D Shader with translucency effects.</figcaption>
 			</figure>
 
 			<p>The Game Map uses a combination of displacement mapping and simulated sub surface shading to mimic real flesh.</p>
@@ -160,6 +160,19 @@
 			<p>Emission = intensity * shineThroughColor * pointlight_attenuation(world_position)</p>
 
 			<p>We additionally clamped the emission values to ensure the transition between base and emission color are not too harsh.  </p>
+
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+				  <td style="text-align: center;">
+					<img src="nosubsurface.png" width="400px"/>
+					<figcaption>Uterus Wall without subsurface scattering</figcaption>
+				  </td>
+				  <td style="text-align: center;">
+					<img src="subsurface.png" width="400px"/>
+					<figcaption>Uterus Wall with simulated subsurface scattering</figcaption>
+				  </td>
+				</tr>
+			</table>
 
 			<h3>Geometric Modeling</h3>
 			<p>TBD. @Grant.</p>
