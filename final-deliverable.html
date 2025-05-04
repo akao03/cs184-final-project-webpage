@@ -102,7 +102,13 @@
 			</p>
 
 			<h3>Sperm Glow Shader</h3>
-			<p>TBD. @Ashley</p>
+			<p>The sperm's glow shader was built on top of its existing shader graph from movement. We added two parameters
+				to the shader graph, Color and GlowAmt, to control the color of the sperm and the intensity of its glow respectively.
+				Color also controls the emission of the sperm, and by extension the color of its glow. Next, we added a 
+				Bloom effect to the scenes where we wanted the sperm to glow and adjusted the parameters such that pixels
+				above the threshold brightness would glow with the desired intensity. Finally, to allow the camera to see the post-processing effects, we enabled 
+				post-processing under the camera object's options.
+			</p>
 
 			<h3>Custom Shading for the Game Map, Egg, Bacteria</h3>
 			<p>The shading for the egg uses translucency and emissions to simulate the egg’s semi-transparent appearance. The shader uses a lerp and scrolling speed to make the emission seem translucent as well. </p>
@@ -196,6 +202,85 @@
 		You can include results that you think show off what you built but that you did not have time to go over on presentation day.-->
 
 		<!--Include side-by-side comparisons of 2D vs new 3D stuff e.g. player, bacteria cells, egg-->
+		<p>Below we provide side-by-side comparisons of 2D and 3D Spermulator.</p>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-startscreen.png" width="400px"/>
+				  <figcaption>Spermulator 2D Start Screen</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-startscreen.png" width="400px"/>
+				  <figcaption>Spermulator 3D Start Screen</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-tutorial.png" width="400px"/>
+				  <figcaption>Spermulator 2D Tutorial</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-tutorial.png" width="400px"/>
+				  <figcaption>Spermulator 3D Tutorial</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-colorpage.png" width="400px"/>
+				  <figcaption>Spermulator 2D Customization Screen</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-colorpage.png" width="400px"/>
+				  <figcaption>Spermulator 3D Customization Screen</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-interior.png" width="400px"/>
+				  <figcaption>Spermulator 2D Interior</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-interior.png" width="400px"/>
+				  <figcaption>Spermulator 3D Interior</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-lactic-acid.png" width="400px"/>
+				  <figcaption>Spermulator 2D Acid</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-lacticacid.png" width="400px"/>
+				  <figcaption>Spermulator 3D Acid</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-mucus.png" width="400px"/>
+				  <figcaption>Spermulator 2D Base and Mucus</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-mucus.png" width="400px"/>
+				  <figcaption>Spermulator 3D Base and Mucus</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/final/s2d-egg.png" width="400px"/>
+				  <figcaption>Spermulator 2D Egg</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/final/s3d-egg.png" width="400px"/>
+				  <figcaption>Spermulator 3D Egg</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<p>You can find the original 2D game here: </p>
+
+		<p>You can find the 3D game here: </p>
 
 		<h2>References</h2>
 		<ul>
