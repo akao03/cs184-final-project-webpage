@@ -37,8 +37,6 @@
         <br>
         Link to video: <a href="https://drive.google.com/file/d/1gQRHGR9s3rZEzQQpZ5JK1dIQTpprAwWe/view?usp=sharing">https://drive.google.com/file/d/1gQRHGR9s3rZEzQQpZ5JK1dIQTpprAwWe/view?usp=sharing</a>
         <br>
-		Link to slides:<a href="https://docs.google.com/presentation/d/1-O_gsE9-Gc6-yXC7CnoSOrlRxWPDf9CEVOGWhy-gdyA/edit?slide=id.p#slide=id.p">https://docs.google.com/presentation/d/1-O_gsE9-Gc6-yXC7CnoSOrlRxWPDf9CEVOGWhy-gdyA/edit?slide=id.p#slide=id.p</a>
-		<br>
 		<br>
 		Link to homepage: <a href="https://akao03.github.io/cs184-final-project-webpage/">https://akao03.github.io/cs184-final-project-webpage/</a>
 		<br>
@@ -47,12 +45,12 @@
 
 		<h2>Abstract</h2>
 		<!--A paragraph summary of the entire project-->
-		<p> In this project we turned Spermulator, a 2D game, into 3D. This involved turning all assets into 3D,
+		<p> In this project we turned <a href="https://circlecly.itch.io/spermulator">Spermulator</a>, a 2D game, into 3D. This involved turning all assets into 3D,
 		adapting camera views, and developing new textures that would accurately represent light reflection. Our starting point was a 
 		2D rendering pipeline in Unity with basic game function code and minimal if no shading. Only one of us had Unity experience at all, and only with a 2D pipeline. Over the course of the project, we learned 
 		a lot about Unity's 3D rendering pipeline, including converting all the assets and camera system to 3D. Every shader we made was from 
 		scratch in Unity's shader graph or custom .shader files, with the aid of online YouTube tutorials. We custom made our uterus model mesh and 
-		bacteria mesh in Blender and imported them into Unity, where we brought all the parts together. The result is Spermulator: 3D! 
+		bacteria mesh in Blender and imported them into Unity, where we brought all the parts together. The result is <a href="https://circlecly.itch.io/spermulator-3d-remake">Spermulator: 3D</a>! 
 		</p>
 
 		<figure>
@@ -86,6 +84,12 @@
 
 			<p>
 			For (4), we use Cinemachine’s <code>ThirdPersonFollow</code> to follow the player’s position. However, we disable Cinemachine’s <code>PanTilt</code> rotation module to avoid circular dependencies—<code>PanTilt</code> rotates the camera based on input, which would then affect player rotation and feed back into camera movement. By separating input-driven rotation (handled by the player) from camera follow behavior, we achieved stable and consistent controls.
+			</p>
+
+			<h3>Minimap</h3>
+
+			<p>
+			Based on TA suggestions in the proposal and milestone report, we decide to add a minimap to show the egg location and map layout. To do this, we used a secondary camera to render the scene from above. This camera was set to orthographic mode and positioned directly above the player. We then created a Render Texture in Unity and assigned it to the minimap camera. The minimap camera's output was displayed on a UI Raw Image component, allowing us to overlay it on the main game screen. To show the player's location, we transformed the player's position to the minimap's coordinate system and drew a small arrow representing the player, which points towards the player's direction.
 			</p>
 
 			<h3>Procedural Sperm Wiggle Shader</h3>
@@ -231,9 +235,10 @@
 		<h2>Results</h2>
 		<!--Your final images, animations, video of your system (whichever is relevant). 
 		You can include results that you think show off what you built but that you did not have time to go over on presentation day.-->
+		The game is now hosted on itch.io, playable directly from the browser on any laptop. Go to this link to play the game: <a href="https://circlecly.itch.io/spermulator-3d-remake">https://circlecly.itch.io/spermulator-3d-remake</a>
 
 		<!--Include side-by-side comparisons of 2D vs new 3D stuff e.g. player, bacteria cells, egg-->
-		<p>Below we provide side-by-side comparisons of 2D and 3D Spermulator.</p>
+		<p>Below, we also provide side-by-side comparisons of 2D and 3D Spermulator.</p>
         <div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
@@ -309,10 +314,6 @@
 			</table>
 		</div>
 
-		<p>You can find the original 2D game here: </p>
-
-		<p>You can find the 3D game here: </p>
-
 		<h2>References</h2>
 		<ul>
 			<li>Unity Documentation (URP, setting up shader graphs, Modifying Material Colors)</li>
@@ -327,7 +328,7 @@
 			also wrote the webpage reports and coordinated team meetings.
 		</p>
 		<p>Circle did the bulk of the Unity work, including sperm movement, transformation of the camera view to 3D,
-			adapting existing scripts for 3D, and much more.
+			adapting existing scripts for 3D. Circle also helped with integration testing, including the 3D model, the various shaders used.
 		</p>
 		<p>Grant created the 3D model for the uterus in Blender. This model features ridges in appropriate parts of the model 
 			and is proportioned to be close to the real organ.
