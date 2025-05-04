@@ -78,6 +78,12 @@
 			For (4), we use Cinemachine’s <code>ThirdPersonFollow</code> to follow the player’s position. However, we disable Cinemachine’s <code>PanTilt</code> rotation module to avoid circular dependencies—<code>PanTilt</code> rotates the camera based on input, which would then affect player rotation and feed back into camera movement. By separating input-driven rotation (handled by the player) from camera follow behavior, we achieved stable and consistent controls.
 			</p>
 
+			<h3>Minimap</h3>
+
+			<p>
+			Based on TA suggestions in the proposal and milestone report, we decide to add a minimap to show the egg location and map layout. To do this, we used a secondary camera to render the scene from above. This camera was set to orthographic mode and positioned directly above the player. We then created a Render Texture in Unity and assigned it to the minimap camera. The minimap camera's output was displayed on a UI Raw Image component, allowing us to overlay it on the main game screen. To show the player's location, we transformed the player's position to the minimap's coordinate system and drew a small arrow representing the player, which points towards the player's direction.
+			</p>
+
 			<h3>Procedural Sperm Wiggle Shader</h3>
 			<p>
 			To simulate realistic swimming, we implemented a procedural GPU animation using Unity’s Shader Graph (URP). Rather than rigging a skeletal tail, we applied sinusoidal vertex displacement along the mesh.
